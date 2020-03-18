@@ -1,11 +1,3 @@
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
-/**
- * @api
- */
 define(['jquery', 'jquery-ui-modules/widget'], function($) {
     'use strict';
 
@@ -22,9 +14,6 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
             productLinkRegexp: /<a href="([^"]+)" class="cs-product-tile__name-link/g,
         },
 
-        /**
-         * Widget creating.
-         */
         _create: function() {
             var showNavigation = this.options.showNavigation,
                 categoryInfo,
