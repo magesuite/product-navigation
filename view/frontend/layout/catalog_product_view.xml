@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page layout="1column" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="main">
+            <container name="product.nav.container" htmlTag="div" htmlClass="cs-container cs-container--page-pdp-product-nav" before="-">
+                <container name="product.nav.container.inner" htmlTag="div" htmlClass="cs-container__inner">
+                    <block name="product.nav.bar" template="MageSuite_ProductNavigation::navbar.phtml"/>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>
