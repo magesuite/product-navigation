@@ -7,7 +7,8 @@
                 <container name="product.nav.container.inner" htmlTag="div" htmlClass="cs-container__inner">
                     <block name="product.nav.bar" template="MageSuite_ProductNavigation::navbar.phtml">
                         <arguments>
-                            <argument name="back_label" xsi:type="string" translate="true">Back to category</argument>
+                            <argument name="category_label" xsi:type="string" translate="true">Back to category</argument>
+                            <argument name="search_label" xsi:type="string" translate="true">Back to results</argument>
                             <argument name="prev_label" xsi:type="string" translate="true">Previous product</argument>
                             <argument name="next_label" xsi:type="string" translate="true">Next product</argument>
                             <argument name="widget_options" xsi:type="array">

@@ -4,7 +4,8 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
     $.widget('magesuite.productNavigation', {
         options: {
             breadcrumbLinkSelector: '.cs-breadcrumbs__link',
-            backLinkSelector: '.cs-product-navigation__link--back',
+            categoryLinkSelector: '.cs-product-navigation__link--category',
+            searchLinkSelector: '.cs-product-navigation__link--search',
             prevLinkSelector: '.cs-product-navigation__link--prev',
             nextLinkSelector: '.cs-product-navigation__link--next',
             activeLinkClass: 'cs-product-navigation__link--active',
@@ -30,9 +31,12 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
             if (showNavigation && previousProducts.length) {
                 this._enablePrevious(previousProducts.pop());
             } else {
-                backUrl = $(this.options.breadcrumbLinkSelector)
-                    .last()
-                    .attr('href');
+                backUrl = this._getBackUrl(
+                    categoryInfo,
+                    previousProducts,
+                    nextProducts
+                );
+
                 this._enableBack(backUrl);
             }
 
@@ -121,6 +125,16 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
             );
         },
 
+        _getBackUrl: function(categoryInfo, previousProducts, nextProducts) {
+            if (previousProducts.length || nextProducts.length) {
+                return categoryInfo.url;
+            }
+            // Otherwise get the value from breadcrumbs.
+            return $(this.options.breadcrumbLinkSelector)
+                .last()
+                .attr('href');
+        },
+
         _saveCategoryInfo: function(categoryInfo) {
             localStorage.setItem(
                 this.options.storageKey,
@@ -129,7 +143,12 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
         },
 
         _enableBack: function(url) {
-            this._enableLink($(this.options.backLinkSelector), url);
+            var selector =
+                url.indexOf('catalogsearch') !== -1
+                    ? this.options.searchLinkSelector
+                    : this.options.categoryLinkSelector;
+
+            this._enableLink($(selector), url);
         },
 
         _enablePrevious: function(url) {
