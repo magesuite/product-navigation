@@ -10,6 +10,9 @@
                             <argument name="back_label" xsi:type="string" translate="true">Back to category</argument>
                             <argument name="prev_label" xsi:type="string" translate="true">Previous product</argument>
                             <argument name="next_label" xsi:type="string" translate="true">Next product</argument>
+                            <argument name="widget_options" xsi:type="array">
+                                <item name="showNavigation" xsi:type="boolean">true</item>
+                            </argument>
                         </arguments>
                     </block>
                 </container>
