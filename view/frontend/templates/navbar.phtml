@@ -1,4 +1,12 @@
-<nav class="cs-product-navigation" data-mage-init='{ "MageSuite_ProductNavigation/js/product-navigation": {} }'>
+<?php 
+$widgetOptions = $block->getWidgetOptions();
+$widgetOptionsJson = empty($widgetOptions) ? '{}' : json_encode($widgetOptions);
+?>
+
+<nav class="cs-product-navigation" 
+    data-mage-init='{
+        "MageSuite_ProductNavigation/js/product-navigation": <?= $widgetOptionsJson ?> 
+    }'>
     <ul class="cs-product-navigation__list">
         <a href="#" class="cs-product-navigation__link cs-product-navigation__link--back"><?= $block->getBackLabel(); ?></a>
         <a href="#" class="cs-product-navigation__link cs-product-navigation__link--prev"><?= $block->getPrevLabel(); ?></a>
