@@ -37,7 +37,9 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
                     nextProducts
                 );
 
-                this._enableBack(backUrl);
+                if (backUrl !== undefined) {
+                    this._enableBack(backUrl);
+                }
             }
 
             if (showNavigation && nextProducts.length) {
