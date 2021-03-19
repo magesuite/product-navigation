@@ -8,9 +8,17 @@ $widgetOptionsJson = empty($widgetOptions) ? '{}' : json_encode($widgetOptions);
         "MageSuite_ProductNavigation/js/product-navigation": <?= $widgetOptionsJson ?> 
     }'>
     <ul class="cs-product-navigation__list">
-        <a href="#" class="cs-product-navigation__link cs-product-navigation__link--category"><?= $block->getCategoryLabel(); ?></a>
-        <a href="#" class="cs-product-navigation__link cs-product-navigation__link--search"><?= $block->getSearchLabel(); ?></a>
-        <a href="#" class="cs-product-navigation__link cs-product-navigation__link--prev"><?= $block->getPrevLabel(); ?></a>
-        <a href="#" class="cs-product-navigation__link cs-product-navigation__link--next"><?= $block->getNextLabel(); ?></a>
+        <li class="cs-product-navigation__list-item">
+            <a href="#" class="cs-product-navigation__link cs-product-navigation__link--category"><?= $block->getCategoryLabel(); ?></a>
+        </li>
+        <li class="cs-product-navigation__list-item">
+            <a href="#" class="cs-product-navigation__link cs-product-navigation__link--search"><?= $block->getSearchLabel(); ?></a>
+        </li>
+        <li class="cs-product-navigation__list-item">
+            <a href="#" class="cs-product-navigation__link cs-product-navigation__link--prev"><?= $block->getPrevLabel(); ?></a>
+        </li>
+        <li class="cs-product-navigation__list-item">
+            <a href="#" class="cs-product-navigation__link cs-product-navigation__link--next"><?= $block->getNextLabel(); ?></a>
+        </li>
     </ul>
 </nav>
