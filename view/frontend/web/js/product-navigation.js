@@ -8,7 +8,7 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
             searchLinkSelector: '.cs-product-navigation__link--search',
             prevLinkSelector: '.cs-product-navigation__link--prev',
             nextLinkSelector: '.cs-product-navigation__link--next',
-            activeLinkClass: 'cs-product-navigation__link--active',
+            activeListElClass: 'cs-product-navigation__list-item--active',
             readyClass: 'cs-product-navigation--initialized',
             showNavigation: true,
             storageKey: 'mgs-product-navigation',
@@ -171,7 +171,7 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
         },
 
         _enableLink: function($link, url) {
-            $link.attr('href', url).addClass(this.options.activeLinkClass);
+            $link.attr('href', url).parent('li').addClass(this.options.activeListElClass);
         },
 
         _prefetchLink: function(url) {
