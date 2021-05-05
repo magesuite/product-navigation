@@ -25,8 +25,8 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
             this._currentUrl = window.location.href;
 
             categoryInfo = this._getCategoryInfo(this._currentUrl);
-            previousProducts = this._getPreviousProducts(categoryInfo);
-            nextProducts = this._getNextProducts(categoryInfo);
+            previousProducts = this._getPreviousProducts(categoryInfo.parsed, categoryInfo.productPosition);
+            nextProducts = this._getNextProducts(categoryInfo.parsed, categoryInfo.productPosition);
 
             if (showNavigation && previousProducts.length) {
                 this._enablePrevious(previousProducts.pop());
@@ -52,14 +52,17 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
         _getCategoryInfo: function(currentUrl) {
             var stringified,
                 parsed,
-                empty = { url: '', products: [] };
+                empty = { url: '', products: [] },
+                currentProductPathname = currentUrl.split("/").pop(),
+                productPosition;
 
             try {
                 stringified = localStorage.getItem(this.options.storageKey);
                 parsed = stringified ? JSON.parse(stringified) : empty;
+                productPosition = parsed.products.indexOf(parsed.products.find(element => element.includes(currentProductPathname)));
 
-                if (parsed.products.indexOf(currentUrl) !== -1) {
-                    return parsed;
+                if (productPosition !== -1) {
+                    return {parsed, productPosition};
                 }
             } catch (error) {
                 /* Access to localStorage or JSON parsing error. */
@@ -68,23 +71,22 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
             return empty;
         },
 
-        _getPreviousProducts: function(categoryInfo) {
-            var products = categoryInfo.products,
-                currentIndex = products.indexOf(this._currentUrl);
+        _getPreviousProducts: function(parsed, position) {
+            var products = parsed.products;
 
-            return products.slice(0, Math.max(currentIndex, 0));
+            return products.slice(0, Math.max(position, 0));
         },
 
-        _getNextProducts: function(categoryInfo) {
-            var products = categoryInfo.products,
+        _getNextProducts: function(parsed, position) {
+            var products = parsed.products,
                 currentIndex = products.indexOf(this._currentUrl),
-                categoryHasProduct = currentIndex !== -1,
+                categoryHasProduct = position !== -1,
                 nextProducts = categoryHasProduct
-                    ? products.slice(currentIndex + 1)
+                    ? products.slice(position + 1)
                     : [];
 
             if (categoryHasProduct && nextProducts.length <= 1) {
-                this._fetchNextProducts(categoryInfo);
+                this._fetchNextProducts(parsed);
             }
 
             return nextProducts;
