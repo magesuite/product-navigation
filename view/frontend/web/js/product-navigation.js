@@ -72,12 +72,20 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
         },
 
         _getPreviousProducts: function(parsed, position) {
+            if (!parsed || !parsed.products) {
+                return [];
+            }
+
             var products = parsed.products;
 
             return products.slice(0, Math.max(position, 0));
         },
 
         _getNextProducts: function(parsed, position) {
+            if (!parsed || !parsed.products) {
+                return [];
+            }
+
             var products = parsed.products,
                 currentIndex = products.indexOf(this._currentUrl),
                 categoryHasProduct = position !== -1,
