@@ -32,7 +32,7 @@ define(['jquery', 'jquery-ui-modules/widget'], function($) {
                 this._enablePrevious(previousProducts.pop());
             } else {
                 backUrl = this._getBackUrl(
-                    categoryInfo,
+                    categoryInfo.parsed,
                     previousProducts,
                     nextProducts
                 );
