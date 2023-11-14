@@ -1,11 +1,11 @@
-<?php 
+<?php
 $widgetOptions = $block->getWidgetOptions();
 $widgetOptionsJson = empty($widgetOptions) ? '{}' : json_encode($widgetOptions);
 ?>
 
-<nav class="cs-product-navigation" 
+<nav class="cs-product-navigation"
     data-mage-init='{
-        "MageSuite_ProductNavigation/js/product-navigation": <?= $widgetOptionsJson ?> 
+        "MageSuite_ProductNavigation/js/product-navigation": <?= $widgetOptionsJson ?>
     }'>
     <ul class="cs-product-navigation__list">
         <li class="cs-product-navigation__list-item">
